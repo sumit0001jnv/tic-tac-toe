@@ -9,6 +9,20 @@ const changeTurn = () => {
     turn = turn == "X" ? "0" : "X"
 }
 
+function onSoundClick(isSoundPlay) {
+    if (isSoundPlay) {
+        music.play();
+        document.querySelector("#sound-on").style.display = 'none';
+        document.querySelector("#sound-off").style.display = 'block';
+    }else{
+        music.pause();
+        document.querySelector("#sound-off").style.display = 'none';
+        document.querySelector("#sound-on").style.display = 'block';
+    }
+}
+
+
+
 const checkWin = () => {
     let winPossiblities = [
         [0, 1, 2],
@@ -33,14 +47,10 @@ const checkWin = () => {
             document.querySelector(".turn").innerText = turn + " won";
             document.querySelector(".imgbox").style.display = "block";
             gameover.play();
-            let containerX = document.querySelector(".container").getBoundingClientRect().x;
-            let containerY = document.querySelector(".container").getBoundingClientRect().y;
-            let containerWidth = document.querySelector(".container").getBoundingClientRect().width;
-            let containerHeight = document.querySelector(".container").getBoundingClientRect().height;
-            let x1 = textBoxes[possiblity[0]].getBoundingClientRect().x
-            let y1 = textBoxes[possiblity[0]].getBoundingClientRect().y
-            let x2 = textBoxes[possiblity[2]].getBoundingClientRect().x
-            let y2 = textBoxes[possiblity[2]].getBoundingClientRect().y
+            let containerX = document.querySelector(".container").getBoundingClientRect().x + 16;
+            let containerY = document.querySelector(".container").getBoundingClientRect().y + 16;
+            let containerWidth = document.querySelector(".container").getBoundingClientRect().width - 32;
+            let containerHeight = document.querySelector(".container").getBoundingClientRect().height - 32;
             document.querySelector("svg").style.display = "block";
             document.querySelector("svg").parentElement.style.zIndex = 1;
             document.querySelector("svg").style.transform = `translate(${containerX}px,${containerY}px)`;
